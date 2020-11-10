@@ -1,0 +1,46 @@
+<!doctype html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta http-equiv=Content-Type content="text/html;charset=utf-8">
+    <script src="sdk.js"></script>
+</head>
+<body>
+<div class="wrapper">
+    F12在控制台查看log
+</div>
+<script>
+    var api = new OneNetApi('GPbHpXhSCwlYyIxfdxoMpcAYJKY=');
+
+    /**
+     * 读取设备多个数据流
+     * api.getDataStreams(设备id)
+     * */
+    api.getDataStreams(559451901).done(function(data){
+        console.log('api调用完成，服务器返回data为：', data);
+    });
+
+
+    /**
+     * 获取数据点
+     * api.getDataPoints(设备id, 参数)
+     * 参数为一个json对象，可以设置各个读取参数，参数列表参考http://open.iot.10086.cn/apidoc/datapoint/view.html
+     * */
+    api.getDataPoints(559451901, {datastream_id:'temperature'}).done(function(data){
+        console.log('api调用完成，服务器返回data为：', data);
+    });
+
+
+    /**
+     * 发送命令
+     * api.sendCommand(设备id, 命令内容) 命令内容参考http://open.iot.10086.cn/apidoc/cmd/create.html
+     * */
+    api.sendCommand(559451901, '0').done(function(data){
+        console.log('api调用完成，服务器返回data为：', data);
+    });
+</script>
+</body>
+</html>

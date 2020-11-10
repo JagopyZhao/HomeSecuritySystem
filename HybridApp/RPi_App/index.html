@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title></title>
+    <script src="common/js/mui.js"></script>
+    <link href="common/css/mui.css" rel="stylesheet"/>
+	<script src="./CryptoJS-master/rollups/aes.js"></script>
+	<script src="./CryptoJS-master/components/mode-ecb.js"></script>
+	<script src="./CryptoJS-master/components/pad-nopadding.js"></script>
+	<script src="https://cdn.bootcss.com/jsencrypt/3.0.0-beta.1/jsencrypt.js"></script>
+</head>
+<body>
+	<script>
+  var key = CryptoJS.enc.Utf8.parse("8NONwyJtHesysWpM");
+  var plaintText = 'ABCDEFGH'; // Plaintext
+  var encryptedData = CryptoJS.AES.encrypt(plaintText, key, {
+    mode: CryptoJS.mode.ECB,
+    padding: CryptoJS.pad.Pkcs7
+  });
+  console.log("Before encryption："+plaintText);
+  console.log("After encryption："+encryptedData);
+  encryptedData = encryptedData.ciphertext.toString();
+  var encryptedHexStr = CryptoJS.enc.Hex.parse(encryptedData);
+  var encryptedBase64Str = CryptoJS.enc.Base64.stringify(encryptedHexStr);
+  var decryptedData = CryptoJS.AES.decrypt(encryptedBase64Str, key, {
+    mode: CryptoJS.mode.ECB,
+    padding: CryptoJS.pad.Pkcs7
+  });
+  var decryptedStr = decryptedData.toString(CryptoJS.enc.Utf8);
+  console.log("After decryption:"+decryptedStr);
+   var pwd = "PCsUFtgog9/qpqmqXsuCRQ==";
+  //Encrypt the data returned by the server
+  var decryptedData = CryptoJS.AES.decrypt(pwd, key, {
+    mode: CryptoJS.mode.ECB,
+    padding: CryptoJS.pad.Pkcs7
+  });
+  console.log("Decrypt the data returned by the server:"+decryptedStr);
+  
+ 
+  //Get key pair
+  function getRsaKeys(func){
+      window.crypto.subtle.generateKey(
+          {
+              name: "RSA-OAEP",
+              modulusLength: 2048, //can be 1024, 2048, or 4096
+              publicExponent: new Uint8Array([0x01, 0x00, 0x01]),
+              hash: {name: "SHA-512"}, //can be "SHA-1", "SHA-256", "SHA-384", or "SHA-512"
+          },
+          true, //whether the key is extractable (i.e. can be used in exportKey)
+          ["encrypt", "decrypt"] //must be ["encrypt", "decrypt"] or ["wrapKey", "unwrapKey"]
+      ).then(function(key){
+          window.crypto.subtle.exportKey(
+              "pkcs8", 
+              key.privateKey 
+          ).then(function(keydata1){
+              window.crypto.subtle.exportKey(
+                  "spki",
+                  key.publicKey 
+              ).then(function(keydata2){
+                  var privateKey = RSA2text(keydata1,1);
+                  var publicKey = RSA2text(keydata2);
+                  func(privateKey,publicKey);
+              }).catch(function(err){
+                  console.error(err);
+              });
+          })
+          .catch(function(err){
+              console.error(err);
+          });
+      })
+      .catch(function(err){
+          console.error(err);
+      });
+  }
+  function RSA2text(buffer,isPrivate=0) {
+          var binary = '';
+          var bytes = new Uint8Array(buffer);
+          var len = bytes.byteLength;
+          for (var i = 0; i < len; i++) {
+              binary += String.fromCharCode(bytes[i]);
+          }
+          var base64 = window.btoa(binary);
+          var text = "-----BEGIN "+(isPrivate?"PRIVATE":"PUBLIC")+" KEY-----\n";
+          text += base64.replace(/[^\x00-\xff]/g,"$&\x01").replace(/.{64}\x01?/g,"$&\n");
+          text += "\n-----END "+(isPrivate?"PRIVATE":"PUBLIC")+" KEY-----";
+          return text;
+  }
+  
+  function encryptData(PRIVATE_KEY,PUBLIC_KEY){
+	  //Use public key encryption
+	  var encrypt = new JSEncrypt();
+	  //encrypt.setPrivateKey('-----BEGIN RSA PRIVATE KEY-----'+PRIVATE_KEY+'-----END RSA PRIVATE KEY-----');
+	  encrypt.setPublicKey('-----BEGIN PUBLIC KEY-----' + PUBLIC_KEY + '-----END PUBLIC KEY-----');
+	  console.log("RSA PublicKey: "+PUBLIC_KEY);
+	  var str = {
+	  "uid":"1223334",
+	  "pwd":"asd"
+	  }
+	  var encrypted = encrypt.encrypt(JSON.stringify(str));
+	  console.log('Data before encryption:%o', str);
+	  console.log('Encrypted data:%o', encrypted);
+	  //Decrypt with private key
+	  var decrypt = new JSEncrypt();
+	  //decrypt.setPublicKey('-----BEGIN PUBLIC KEY-----' + PUBLIC_KEY + '-----END PUBLIC KEY-----');
+	  decrypt.setPrivateKey('-----BEGIN RSA PRIVATE KEY-----'+PRIVATE_KEY+'-----END RSA PRIVATE KEY-----');
+	  var uncrypted = decrypt.decrypt(encrypted);
+	  console.log('Data after decryption:%o', uncrypted);
+  }
+	//Obtain the public key and encrypt
+	getRsaKeys(encryptData);
+</script>
+
+</body>
+</html>

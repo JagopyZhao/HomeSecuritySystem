@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Hello MUI</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+		<!--标准mui.css-->
+		<link rel="stylesheet" href="../common/css/mui.css">
+		<!--App自定义的css-->
+		<link rel="stylesheet" type="text/css" href="../common/css/app.css"/>
+		<link rel="stylesheet" type="text/css" href="./control.css"/>
+		<link rel="stylesheet" href="../common/css/common.css" type="text/css" charset="utf-8"/>
+		<script type="text/javascript" src="../common/js/common.js"></script>
+	</head>
+
+	<body>
+
+		<header class="mui-bar mui-bar-nav">
+			<h1 class="mui-title">Dashboard</h1>
+		</header>
+			
+		<div class="mui-content">
+			<ul class="mui-table-view mui-content-padded">
+				<li class="mui-table-view-cell mui-text-left">
+					<input id="path1" type="text" placeholder="Enter local IP, like 192.168.0.20"/>
+				</li>
+				<li class="mui-table-view-cell mui-text-left">
+					<span>Temperature(°C)</span>
+					<span class="mui-pull-right temp">24</span> 
+				</li>
+				<li class="mui-table-view-cell mui-text-left">
+					<span>Humidity(%RH)</span>
+					<span class="mui-pull-right humi">56</span> 
+				</li>
+				<li class="mui-table-view-cell mui-text-left">
+					<span>Gas</span>
+					<span class="mui-pull-right gas">closed</span> 
+				</li>
+				<li class="mui-table-view-cell mui-text-left">
+					<span>Motion</span>
+					<span class="mui-pull-right motion">closed</span> 
+				</li>
+				<li class="mui-table-view-cell mui-text-left">
+					<span>Fire</span>
+					<span class="mui-pull-right fire">closed</span> 
+				</li>
+				<li class="mui-table-view-cell mui-text-left">
+					<span>Soil</span>
+					<span class="mui-pull-right soil">closed</span> 
+				</li>
+				<li class="mui-table-view-cell mui-text-left">
+					<span>Rain</span>
+					<span class="mui-pull-right rain">closed</span> 
+				</li>
+				<li class="mui-table-view-cell mui-text-left">
+					<span>Relay</span>
+					<span class="mui-pull-right relay">closed</span> 
+				</li>
+				<li class="mui-table-view-cell mui-text-left">
+					<span>Motor</span>
+					<span class="mui-pull-right motor">closed</span> 
+				</li>
+			</ul>
+		</div>
+		<div class="mui-content">
+			<button id="update" type="button" class="mui-btn mui-btn-success">
+								Real-time updated
+							</button>
+		</div>
+		<div class="mui-content">
+			<ul class="mui-table-view">
+				<li class="mui-table-view-cell mui-text-left">
+					<span>Relay</span>
+					<div class="mui-switch mui-switch-blue mui-btn-positive" id="btnRelay">
+						<div class="mui-switch-handle"></div>
+					</div>
+				</li>
+			</ul>
+			<ul class="mui-table-view mui-content-padded">
+				<li class="mui-table-view-cell mui-text-left">
+					<span>Motor</span>
+					<div class="mui-switch mui-switch-blue mui-btn-positive" id="btnMotor">
+						<div class="mui-switch-handle"></div>
+					</div>
+				</li>
+			</ul>
+		</div>
+		<div class="mui-content">
+			<div class="button" onclick="clicked('../video/video_videoplayer.html', 'VideoPlayer')">Real-time surveillance video</div>
+		</div>
+		<script src="../common/js/mui.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../common/js/sdk.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../common/js/jquery-1.9.1.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="./control.js" type="text/javascript" charset="utf-8"></script>
+	</body>
+</html>

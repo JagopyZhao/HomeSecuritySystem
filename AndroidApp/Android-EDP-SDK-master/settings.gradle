@@ -1,0 +1,6 @@
+/*
+ * Copyright (c) 2016-2018. China Mobile Communications Corporation. All rights reserved. 
+ */
+include ':httpdemo'
+
+include ':app', ':Android-EDP-SDK'

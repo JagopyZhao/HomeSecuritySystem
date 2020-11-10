@@ -1,0 +1,111 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+  <link rel="stylesheet" href='../static/style.css'/>
+	<link rel="stylesheet" href="../static/mui.css" />
+	
+	<script type="text/javascript" src="../static/jquery-1.9.1.min.js"></script>
+
+</head>
+<body>
+	<script type="text/javascript">
+  
+  function getData() {
+   $.ajax({
+      type: "get",
+      url: "/new_parameter",
+      dataType: "json",
+      success : function(data){
+          $(".timenew").empty;
+          $(".timenew").text(data['time']);
+          
+          $(".temperature").empty;
+          $(".temperature").text(data['temp']);
+          
+          $(".humidity").empty;
+          $(".humidity").text(data['humi']);
+      console.log(data);
+      console.log(data['time']);
+      console.log(data['temp']);
+      console.log(data['humi']);
+      console.log("测试string:"+typeof data['humi']);
+      if(data['humi'] > 80)
+      {
+        alert('Be careful!');
+      }
+      }
+    });
+    }
+    $(function(){
+        $('#on').click(function(){
+            alert('Confirm operation?')
+            $.ajax({
+                type:'GET',
+                url:'/on',
+                success:function(data){
+                    console.log("successfully!");
+                },
+                error:function(){
+                    alert('failure!')
+                }
+            })
+        })
+    })
+    
+    $(function(){
+        $('#off').click(function(){
+            alert('Confirm operation?')
+            $.ajax({
+                type:'GET',
+                url:'/off',
+                success:function(data){
+                    console.log("successfully!");
+                },
+                error:function(){
+                    alert('failure!')
+                }
+            })
+        })
+    })
+    //$(function(){
+    //    $('#status').click(function(){
+    //        alert('Don't define!')
+    //    })
+    //})
+  setInterval("getData()", 2000);
+  
+	</script>
+	<script type="text/javascript">
+	 
+    </script>
+    <h2 style=" text-align:center;font-family:times new roman,times,serif;">Flask Test</h2>
+    <p></p>
+	<h4 style=" text-align:center;font-family:times new roman,times,serif;">@author: Zhao</h4>
+	<p></p>
+    <h3 style=" text-align:center;font-family:times new roman,times,serif;"><span class="timenew"></span></h3>
+	<hr>
+    <h3 style=" text-align:center;font-family:times new roman,times,serif;">Temperature:  <span class="temperature"></span> °C </h3>
+    <h3 style=" text-align:center;font-family:times new roman,times,serif;">Humidity:  <span class="humidity"></span> %RH </h3>
+    <hr>
+    <p></p>
+    <h3 style=" text-align:center;font-family:times new roman,times,serif;">Control Test</h3>
+    <div class="mui-content-padded"> 
+			<button class="mui-btn mui-btn-green mui-btn-block" id="on">ON</button>	
+			<p></p>	
+			<button class="mui-btn mui-btn-red mui-btn-block" id="off">OFF</button>
+    </div>
+    <hr>
+    <h3 style=" text-align:center;font-family:times new roman,times,serif;"> Live </h3> 
+	<div class="mui-content-padded">
+		<a href="/camera" class="mui-btn mui-btn-blue mui-btn-block">Video</a></h3>
+	</div>
+    <hr>
+    <h3 style=" text-align:center;font-family:times new roman,times,serif;"> Others Devices</h3> 
+	<div class="mui-content-padded">
+    <a href="/echarts" class="mui-btn mui-btn-blue mui-btn-block">View devices status</a></h3>
+	</div>	
+	<hr>
+</body>
+</html>

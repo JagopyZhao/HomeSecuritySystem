@@ -1,0 +1,54 @@
+\documentclass{article}
+\usepackage{algorithm}
+\usepackage{algorithmic}
+
+\floatname{algorithm}{}
+
+\begin{document}
+
+\begin{algorithm}
+\caption{Get AesKey from OneNet}
+\begin{algorithmic}[1]
+\STATE $PubKey \leftarrow Public Key$
+\STATE $PriKey \leftarrow Private Key$
+\STATE $HOST \leftarrow "jjfaedp.hedevice.com"$
+\STATE $PORT \leftarrow 876$
+\STATE $DEV-IDT \leftarrow "559451901"$
+\STATE $API-KEY \leftarrow "****************"$
+\STATE $Socket \leftarrow connectOneNet()$
+\STATE $Socket \rightarrow sendToOneNet(PubKey)$
+\STATE $receivedData \leftarrow Socket.receiveFromOneNet()$
+\STATE $AesKey \leftarrow RsaDecrypt(receivedData,PriKey)$
+\STATE $Socket \rightarrow edpConnectOneNet(HOST,PORT,DEV-ID,API-KEY)$ with AesKey
+\end{algorithmic}
+\end{algorithm}
+
+\begin{algorithm}
+\caption{Thread1: Send data to OneNet}
+\begin{algorithmic}[1]
+\WHILE{$AesKey$ exist?}
+\STATE $sensorData \leftarrow getSensorData()$
+\STATE $Cipher \leftarrow AesEncrypt(sensorData,AesKey)$
+\STATE $Socket \rightarrow sendToOneNet(Cipher)$
+\ENDWHILE
+\end{algorithmic}
+\end{algorithm}
+
+\begin{algorithm}
+\caption{Thread2: Receive command from OneNet}
+\begin{algorithmic}[1]
+\WHILE{$AesKey$ exist?}
+\STATE $receivedAesCipher \leftarrow Socket.receiveFromOneNet()$
+\STATE $receivePackage \rightarrow AesDecrypt(receivedAesCipher,AesKey)$
+\STATE $Command \leftarrow getCommand(receivePackage)$
+\IF{$Command$ is 'on'}
+\STATE $onDevice()$
+\ENDIF
+\IF{$Command$ is 'off'}
+\STATE $offDevice()$
+\ENDIF
+\ENDWHILE
+\end{algorithmic}
+\end{algorithm}
+
+\end{document}

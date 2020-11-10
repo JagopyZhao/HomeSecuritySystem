@@ -1,0 +1,15 @@
+.mui-content-padded{
+	margin-top: 15px;
+	margin-bottom: 15px;
+	margin-left: 0px;
+	margin-right: 0px;
+}
+
+.mui-content {
+	background-color: #ffffff;
+}
+
+.mui-bar-nav ~ .mui-content{
+	padding-top: 30px;
+}
+
