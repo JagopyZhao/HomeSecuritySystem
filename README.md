@@ -4,7 +4,7 @@ This codes builds a real-time home security system based on the OneNet cloud pla
 ![](https://github.com/JagopyZhao/HomeSecuritySystem/raw/master/Images/homeSecuritySystem.png) 
 
 ## Cloud Part
-##### Before connecting to OneNet, you need DEV-ID and API-KEY, and log in to OneNet to create a device. For convenience, DEV-ID and API-KEY are provided in the code, just for testing. If you find that you can’t connect, contact me: kivenzhao2020@163.com
+##### Before connecting to OneNet, you need DEV-ID and API-KEY, and log in to OneNet to create a device. Visit English website(https://open.iot.10086.cn/v4/en/). For convenience, DEV-ID and API-KEY are provided in the code, just for testing. If you find that you can’t connect, contact me: kivenzhao2020@163.com
 
 ```python
 DEV_ID = '559451901'
