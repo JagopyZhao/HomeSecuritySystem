@@ -1,17 +1,4 @@
 # HomeSecuritySystem
-Build a home security system on the Raspberry Pi. Use OneNet and Flask.
+This codes builds a real-time home security system based on the OneNet cloud platform to control the status of house through a smartphone. The system consists of a local part and a cloud part. The local part has I/O devices, router and Raspberry Pi (RPi) that collects and monitors sensor data and sends the data to the cloud, and the Flask web server is implemented on a Rasberry Pi. When a user is at home, the user can access the Flask web server to obtain the data directly. The cloud part is OneNet in China Mobile, which provides remote access service. The hybrid App is designed to provide the interaction between users and the home security system in the smartphone, and the EDP and RTSP protocol is implemented to transmit data and video stream. Experimental results show that users can receive sensor data and warning text message through the smartphone and monitor and control home status through OneNet cloud.
 
-这是一段普通的文本，  
-直接回车不能换行，<br>  
-要使用\<br> 
-[我的博客](http://blog.csdn.net/guodongxiaren "悬停显示") 
->数据结构  
->>树  
->>>二叉树  
->>>>平衡二叉树  
->>>>>满二叉树 
-```Bash
-pip install opencv-python
-```
-
-![](https://github.com/JagopyZhao/HomeSecuritySystem/raw/master/Images/homeSecuritySystem.png)
+### 
