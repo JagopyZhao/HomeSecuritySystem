@@ -33,5 +33,29 @@ Is encrypted communication required?(y/n) :
 ```
 ##### Enter y or n to choose whether to encrypt the communication data.
 
- * ### Run the following commands on the Raspberry Pi
+ * ### Run the following apk on your Android phone
+ * HybridApp
+     * RPiSmartHmoe_1111085234.apk
+     
+##### If you can’t see the video, please refer to Video Part.
+     
+### (add img)
 
+## Local Part
+ * ### Run the following commands on the Raspberry Pi
+```Bash
+$ git clone https://github.com/JagopyZhao/HomeSecuritySystem.git
+$ cd HomeSecuritySystem/RasberryPi/Flask/
+```
+
+##### The python script needs to import the following packages：
+```python
+from flask import Flask, render_template, Response, request
+```
+##### Run the following command to start flask：
+```Bash
+$ sudo python3 python3 appcam.py
+```
+##### Open the mobile app and enter the IP of the Raspberry Pi to receive data and send control device commands.
+
+### (add img)
