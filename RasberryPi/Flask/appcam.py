@@ -1,7 +1,6 @@
 from flask import Flask, render_template, Response, request
 app = Flask(__name__)
  
-import cv2
 import json
  
 import Adafruit_DHT

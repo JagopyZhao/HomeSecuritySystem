@@ -7,17 +7,14 @@ import struct
 import json
 import threading
 import select
-import cv2
 import sqlite3
-
 import rsa
-
 import Adafruit_DHT
-import RPi.GPIO as GPIO   #导入树莓派提供的python模块
+import RPi.GPIO as GPIO  
 
 GPIO.setwarnings(False)
 
-GPIO.setmode(GPIO.BCM)   #设置GPIO模式，BCM模式在所有数码派通用
+GPIO.setmode(GPIO.BCM) 
 GPIO.setup(24, GPIO.OUT)   #relay
 GPIO.setup(19, GPIO.OUT)   #motor
 
@@ -125,10 +122,10 @@ def motorOff():
     pwm.stop()
 
 def insert_localdb_temp(temp,humi,gas,motion,fire,soil,rain,relay,motor):
-    # 连接数据库
+    # Connect to the database
     conn=sqlite3.connect('local.db')
     curs=conn.cursor()  
-    # 插入数据库
+    # Insert database
     # strtemp = "%.1f" %(temp)
     # strhumi = "%.1f" %(humi)
     sql = "INSERT INTO sensordata(temperature,humidity,gas,motion,\
@@ -138,7 +135,7 @@ def insert_localdb_temp(temp,humi,gas,motion,fire,soil,rain,relay,motor):
                                     %(temp,humi,gas,motion,fire,soil,rain,relay,motor)
     curs.execute(sql)
     conn.commit()
-    # 关闭数据库
+    # Close the database
     conn.close()
     
 def ping(c):
