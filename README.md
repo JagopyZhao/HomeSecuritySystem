@@ -4,11 +4,11 @@ This codes builds a real-time home security system based on the OneNet cloud pla
 ![](https://github.com/JagopyZhao/HomeSecuritySystem/raw/master/Images/homeSecuritySystem.png) 
 
 ## Cloud Part
-##### Before connecting to OneNet, you need DEV-ID and API-KEY, you need to log in to OneNet to create a device. For convenience, DEV-ID and API-KEY are provided in the code, just for testing. If you find that you can’t connect, contact me: kivenzhao2020@163.com
+##### Before connecting to OneNet, you need DEV-ID and API-KEY, and log in to OneNet to create a device. For convenience, DEV-ID and API-KEY are provided in the code, just for testing. If you find that you can’t connect, contact me: kivenzhao2020@163.com
 
 ```python
 DEV_ID = '559451901'
-AUTH_INFO = 'GPbHpXhSCwlYyIxfdxoMpcAYJKY=' 
+AUTH_INFO = 'GPbHpXhSCwlY*************' 
 ```
 
  * ### Run the following commands on the Raspberry Pi
@@ -67,6 +67,6 @@ $ sudo python3 python3 appcam.py
 #### Open the mobile app and enter the IP of the Raspberry Pi to receive data and send control device commands.
 
 ## Video Part 
-#### Refer to the following sgithub：
+#### Refer to the following github：
 #### https://github.com/BreeeZe/rpos
 
