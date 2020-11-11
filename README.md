@@ -1,7 +1,7 @@
 # Home Security System
 This codes builds a real-time home security system based on the OneNet cloud platform to control the status of house through a smartphone. The system consists of a local part and a cloud part. The local part has I/O devices, router and Raspberry Pi (RPi) that collects and monitors sensor data and sends the data to the cloud, and the Flask web server is implemented on a Rasberry Pi. When a user is at home, the user can access the Flask web server to obtain the data directly. The cloud part is OneNet in China Mobile, which provides remote access service. The hybrid App is designed to provide the interaction between users and the home security system in the smartphone, and the EDP and RTSP protocol is implemented to transmit data and video stream. Experimental results show that users can receive sensor data and warning text message through the smartphone and monitor and control home status through OneNet cloud.
 
-### (add img)
+![](https://github.com/JagopyZhao/HomeSecuritySystem/raw/master/Images/homeSecuritySystem.png) 
 
 ## Cloud Part
 ##### Before connecting to OneNet, you need DEV-ID and API-KEY, you need to log in to OneNet to create a device. For convenience, DEV-ID and API-KEY are provided in the code, just for testing. If you find that you can’t connect, contact me: kivenzhao2020@163.com
@@ -43,11 +43,10 @@ Is encrypted communication required?(y/n) :
  * ### Run the following apk on your Android phone
  * HybridApp
      * RPiSmartHmoe_1111085234.apk
-     
+![](https://github.com/JagopyZhao/HomeSecuritySystem/raw/master/Images/controlPanel.png) 
+![](https://github.com/JagopyZhao/HomeSecuritySystem/raw/master/Images/video.png) 
 #### After opening the app, you do not need to enter the IP, just click Real-time updated.     
 #### If you can’t see the video, please refer to Video Part.
-     
-### (add img)
 
 ## Local Part
  * ### Run the following commands on the Raspberry Pi
@@ -65,8 +64,6 @@ from flask import Flask, render_template, Response, request
 $ sudo python3 python3 appcam.py
 ```
 #### Open the mobile app and enter the IP of the Raspberry Pi to receive data and send control device commands.
-
-### (add img)
 
 ## Video Part 
 #### Refer to the following sgithub：
