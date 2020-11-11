@@ -7,14 +7,17 @@ import struct
 import json
 import threading
 import select
+import cv2
 import sqlite3
+
 import rsa
+
 import Adafruit_DHT
-import RPi.GPIO as GPIO  
+import RPi.GPIO as GPIO   #导入树莓派提供的python模块
 
 GPIO.setwarnings(False)
 
-GPIO.setmode(GPIO.BCM) 
+GPIO.setmode(GPIO.BCM)   #设置GPIO模式，BCM模式在所有数码派通用
 GPIO.setup(24, GPIO.OUT)   #relay
 GPIO.setup(19, GPIO.OUT)   #motor
 
@@ -122,10 +125,10 @@ def motorOff():
     pwm.stop()
 
 def insert_localdb_temp(temp,humi,gas,motion,fire,soil,rain,relay,motor):
-    # Connect to the database
+    # 连接数据库
     conn=sqlite3.connect('local.db')
     curs=conn.cursor()  
-    # Insert database
+    # 插入数据库
     # strtemp = "%.1f" %(temp)
     # strhumi = "%.1f" %(humi)
     sql = "INSERT INTO sensordata(temperature,humidity,gas,motion,\
@@ -135,7 +138,7 @@ def insert_localdb_temp(temp,humi,gas,motion,fire,soil,rain,relay,motor):
                                     %(temp,humi,gas,motion,fire,soil,rain,relay,motor)
     curs.execute(sql)
     conn.commit()
-    # Close the database
+    # 关闭数据库
     conn.close()
     
 def ping(c):
@@ -206,18 +209,18 @@ def doRead(c, s):
                         c.handle_conn_resp()
                     elif type == CMD_REQ:
                         print("<<CMD_REQ")
-                        (cmdid, cmd_len, msg, msg_len) = c.handle_cmd_req()
-                        print('command is: ',msg)
-                        if b'01' in msg:
+                        comm = c.handle_cmd_req()
+                        print('command is: ',comm)
+                        if b'01' in comm:
                             GPIO.output(24, GPIO.HIGH)   #relay on
                             relayStat = 1
-                        elif b'00' in msg:
+                        elif b'00' in comm:
                             GPIO.output(24, GPIO.LOW)   #relay off
                             relayStat = 0
-                        elif b'11' in msg:
+                        elif b'11' in comm:
                             motorOn()   #motor on
                             motorStat = 1
-                        elif b'10' in msg:
+                        elif b'10' in comm:
                             motorOff()   #motor off
                             motorStat = 0
                         else:

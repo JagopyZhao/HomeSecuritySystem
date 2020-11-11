@@ -313,22 +313,13 @@ class Client:
         self._to_packet = packet
 
     def handle_cmd_req(self):
-        len = self._unpack_remaining_length(self._from_packet)
-        #get remaining_length
-        len_cmdid = struct.unpack('!H', bytes([self._from_packet[1+len]])+bytes([self._from_packet[2+len]]))
-        #get cmd len
-        len_msg = struct.unpack('!i',
-                bytes([self._from_packet[3+len+len_cmdid[0]]])+bytes([self._from_packet[4+len+len_cmdid[0]]])+ \
-                        bytes([self._from_packet[5+len+len_cmdid[0]]]) + bytes([self._from_packet[6+len+len_cmdid[0]]]))
-        #get msg len
-
-        (rtype, remaining_length, cmd_len, cmdid, msg_len, msg) = struct.unpack('!BBH'+str(len_cmdid[0])+'si'+str(len_msg[0])+'s', self._from_packet)
-        self._cmdid = cmdid
-        self._cmdlen = cmd_len
-        self._cmdmsglen = msg_len
-        self._cmdmsg = msg
-        self.cmd_resp(self._cmdid)
-        return (cmdid, cmd_len, msg, msg_len)
+        receive_comm = self._from_packet
+        aesInit = AesEncry(self.key) #self.key
+        comm = aesInit.decrypt(receive_comm[2:])
+        len_comm = len(comm)
+        print("receive_comm: ",comm)
+        print("comm: ",comm[len_comm-5:])
+        return comm[len_comm-5:]
     
     def handle_encrypt_resp(self,privkey):
         #print('self._from_packet[0]: ',type(bytes([self._from_packet[0]])))
