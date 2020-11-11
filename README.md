@@ -8,7 +8,7 @@ This codes builds a real-time home security system based on the OneNet cloud pla
 $ git clone https://github.com/JagopyZhao/HomeSecuritySystem.git
 $ cd HomeSecuritySystem/RasberryPi/OneNet/
 ```
- * ##### The following script is used to connect to OneNet. <br> After running sen-edp.py, you can send data to OneNet and obtain commands to control the device.
+ * ##### The following script is used to connect to OneNet.After running sen-edp.py, you can send data to OneNet and obtain commands to control the device.
 ```Bash
 $ sudo python3 send-edp.py
 ```
