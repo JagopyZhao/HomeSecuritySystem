@@ -4,12 +4,19 @@ This codes builds a real-time home security system based on the OneNet cloud pla
 ### (add img)
 
 ## Cloud Part
+##### Before connecting to OneNet, you need DEV-ID and API-KEY, you need to log in to OneNet to create a device. For convenience, DEV-ID and API-KEY are provided in the code, just for testing. If you find that you can’t connect, contact me: kivenzhao2020@163.com
+
+```python
+DEV_ID = '559451901'
+AUTH_INFO = 'GPbHpXhSCwlYyIxfdxoMpcAYJKY=' 
+```
+
  * ### Run the following commands on the Raspberry Pi
 ```Bash
 $ git clone https://github.com/JagopyZhao/HomeSecuritySystem.git
 $ cd HomeSecuritySystem/RasberryPi/OneNet/
 ```
-##### The python script needs to import the following packages：
+#### The python script needs to import the following packages：
 ```python
 import time
 import struct
@@ -21,23 +28,24 @@ import rsa
 import Adafruit_DHT
 import RPi.GPIO as GPIO 
 ```
-##### You need to install them on the Raspberry Pi. Like pip install ...
+#### You need to install them on the Raspberry Pi. Like pip install ...
 
-##### The following script is used to connect to OneNet. After running sen-edp.py, you can send data to OneNet and obtain commands to control the device.
+#### The following script is used to connect to OneNet. After running sen-edp.py, you can send data to OneNet and obtain commands to control the device.
 ```Bash
 $ sudo python3 send-edp.py
 ```
-##### If the following situation occurs：
+#### If the following situation occurs：
 ```Bash
 Is encrypted communication required?(y/n) :
 ```
-##### Enter y or n to choose whether to encrypt the communication data.
+#### Enter y or n to choose whether to encrypt the communication data.
 
  * ### Run the following apk on your Android phone
  * HybridApp
      * RPiSmartHmoe_1111085234.apk
      
-##### If you can’t see the video, please refer to Video Part.
+#### After opening the app, you do not need to enter the IP, just click Real-time updated.     
+#### If you can’t see the video, please refer to Video Part.
      
 ### (add img)
 
@@ -48,14 +56,19 @@ $ git clone https://github.com/JagopyZhao/HomeSecuritySystem.git
 $ cd HomeSecuritySystem/RasberryPi/Flask/
 ```
 
-##### The python script needs to import the following packages：
+#### The python script needs to import the following packages：
 ```python
 from flask import Flask, render_template, Response, request
 ```
-##### Run the following command to start flask：
+#### Run the following command to start flask：
 ```Bash
 $ sudo python3 python3 appcam.py
 ```
-##### Open the mobile app and enter the IP of the Raspberry Pi to receive data and send control device commands.
+#### Open the mobile app and enter the IP of the Raspberry Pi to receive data and send control device commands.
 
 ### (add img)
+
+## Video Part 
+#### Refer to the following sgithub：
+#### https://github.com/BreeeZe/rpos
+
