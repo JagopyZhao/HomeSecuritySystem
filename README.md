@@ -43,8 +43,11 @@ Is encrypted communication required?(y/n) :
  * ### Run the following apk on your Android phone
  * HybridApp
      * RPiSmartHmoe_1111085234.apk
-![](https://github.com/JagopyZhao/HomeSecuritySystem/raw/master/Images/controlPanel.png) 
+ 
+![](https://github.com/JagopyZhao/HomeSecuritySystem/raw/master/Images/controlPanel.png)
+
 ![](https://github.com/JagopyZhao/HomeSecuritySystem/raw/master/Images/video.png) 
+
 #### After opening the app, you do not need to enter the IP, just click Real-time updated.     
 #### If you can’t see the video, please refer to Video Part.
 
