@@ -31,7 +31,7 @@ host = "jjfaedp.hedevice.com"
 #host = "192.168.0.12"
 port = 876
 DEV_ID = b'559451901'
-AUTH_INFO = b'GPbHpXhSCwlYyIxfdxoMpcAYJKY='
+AUTH_INFO = b'GPbHpXhSCwlYyIx*********'
 
 relayStat = 0
 motorStat = 0
